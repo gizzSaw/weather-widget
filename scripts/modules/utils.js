@@ -37,3 +37,33 @@ export const getCurrentDateTime = () => {
 
     return{ dayOfWeek, dayOfMonth, month, year, hours, minutes }
 }
+
+export const getWindDirection = (deg) => {
+    const directions = [
+        '&#8593;',
+        '&#8598;',
+        '&#8592;',
+        '&#8601;',
+        '&#8595;',
+        '&#8600;',
+        '&#8594;',
+        '&#8599;',
+    ]
+
+    const i = Math.round(deg / 45) % 8
+    return directions[i]
+}
+
+export const calculateDewPoint = (temp, humidity) => {
+    const a = 17.27
+    const b = 237.7
+
+    const ft = (a * temp) / (b + temp) + Math.log(humidity / 100)
+    const dewPoint = (b * ft) / (a - ft)
+    return dewPoint.toFixed(1)
+}
+
+export const convertPressure = (pressure) => {
+    const mmHg = pressure * 0.75
+    return mmHg.toFixed(2)
+}
