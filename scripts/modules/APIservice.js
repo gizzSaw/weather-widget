@@ -26,3 +26,22 @@ export const fetchForecast = async (city) => {
         return { succcess: false, error}
     }
 }
+
+export const getCity = async () => {
+    const url = 'https://ipapi.co/city/'
+
+    try {
+        const response = await fetch(url)
+        if (!response.ok) {
+            throw new Error('Ошибка получения города')
+        }
+
+        const city = await response.text()
+
+        return {succcess: true, city}
+
+    } catch (error) {
+        console.log(error)
+        return {succcess: false, error}
+    }
+}
